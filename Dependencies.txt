@@ -1,0 +1,69 @@
+
+Backend Dependencies
+
+
+# Navigate to backend directory
+cd Backend\express
+
+# Install all backend dependencies
+npm install
+
+# Install specific packages (if any are missing)
+npm install bcryptjs cors crypto dotenv express jsonwebtoken mysql2 nodemailer nodemon sequelize
+
+# Verify installation
+npm list
+
+PS C:\Users\aadit\OneDrive\Desktop\Project\Backend\express\src> npm list         
+express@1.0.0 C:\Users\aadit\OneDrive\Desktop\Project\Backend\express
+├── bcryptjs@3.0.2
+├── cors@2.8.5
+├── crypto@1.0.1
+├── dotenv@17.2.1
+├── express@5.1.0
+├── jsonwebtoken@9.0.2
+├── mysql2@3.14.2
+├── nodemailer@7.0.5
+├── nodemon@3.1.10
+└── sequelize@6.37.7
+
+
+
+Frontend Dependencies
+
+
+# Navigate to frontend directory (from project root)
+cd ..\Frontend\react
+
+# Install all frontend dependencies
+npm install
+
+# Install specific packages (if any are missing)
+npm install axios bootstrap bootstrap-icons crypto html2canvas jspdf react react-dom react-router-dom
+
+# Install dev dependencies
+npm install --save-dev @eslint/js @types/react @types/react-dom @vitejs/plugin-react eslint eslint-plugin-react-hooks eslint-plugin-react-refresh globals vite
+
+# Verify installation
+npm list
+
+PS C:\Users\aadit\OneDrive\Desktop\Project\Frontend\react\src> npm list         
+react@0.0.0 C:\Users\aadit\OneDrive\Desktop\Project\Frontend\react
+├── @eslint/js@9.32.0
+├── @types/react-dom@19.1.6
+├── @types/react@19.1.8
+├── @vitejs/plugin-react@4.7.0
+├── axios@1.11.0
+├── bootstrap-icons@1.13.1
+├── bootstrap@5.3.7
+├── crypto@1.0.1
+├── eslint-plugin-react-hooks@5.2.0
+├── eslint-plugin-react-refresh@0.4.20
+├── eslint@9.32.0
+├── globals@16.3.0
+├── html2canvas@1.4.1
+├── jspdf@3.0.1
+├── react-dom@19.1.0
+├── react-router-dom@7.7.1
+├── react@19.1.0
+└── vite@7.0.6

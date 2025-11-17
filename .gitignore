@@ -1,0 +1,49 @@
+# === Node.js ===
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# === Don't ignore package-lock.json (keep this)
+# package-lock.json ❌ should NOT be ignored
+# Remove the line below to keep it in Git (which is best practice)
+# package-lock.json
+
+# === Logs ===
+logs/
+*.log
+*.csv
+
+# === OS / Editor ===
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# === Environment Variables ===
+.env
+.env.local
+.env.*.local
+
+# === Build Output ===
+dist/
+build/
+.cache/
+.next/           # If using Next.js
+out/             # If exporting static build
+
+# === Frontend / React Specific ===
+*.local
+*.env
+*.env.*.local
+*.tgz
+
+# === Editor Configs ===
+.vscode/
+.idea/
+*.swp
+
+# === Mac M1 specific cache (optional) ===
+*.DS_Store
+
+# === Windows junk files ===
+ehthumbs.db
