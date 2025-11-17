@@ -1,4 +1,3 @@
-// Backend/models/Users.js
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
@@ -14,7 +13,7 @@ const UserSchema = new mongoose.Schema({
 
     dueDate: { type: String, default: "0" },
 
-    roll_no: { type: String, unique: false },
+    roll_no: { type: String },
 
     course: { type: String },
 
@@ -25,8 +24,6 @@ const UserSchema = new mongoose.Schema({
     resetToken: { type: String },
 
     resetTokenExpiry: { type: Date }
-}, {
-    timestamps: false
 });
 
 module.exports = mongoose.model("Users", UserSchema);

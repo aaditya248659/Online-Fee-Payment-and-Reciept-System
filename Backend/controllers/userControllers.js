@@ -1,8 +1,6 @@
-// Backend/controllers/userControllers.js
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const Users = require("../models/Users");
-const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 
 const userControllers = {
@@ -12,8 +10,17 @@ const userControllers = {
         try {
             const { name, email, password, mobile_no } = req.body;
 
-            const existing = await Users.findOne({ email });
-            if (existing) return res.status(400).json({ message: "User already exists" });
+            if (!name || !email || !password || !mobile_no) {
+                return res.status(400).json({ message: "All fields are required" });
+            }
+
+            const existingEmail = await Users.findOne({ email });
+            if (existingEmail)
+                return res.status(400).json({ message: "Email already exists" });
+
+            const existingMobile = await Users.findOne({ mobile_no });
+            if (existingMobile)
+                return res.status(400).json({ message: "Mobile number already exists" });
 
             const hashed = await bcrypt.hash(password, 10);
 
@@ -39,7 +46,11 @@ const userControllers = {
             const isMatch = await bcrypt.compare(password, user.password);
             if (!isMatch) return res.status(400).json({ message: "Invalid credentials" });
 
-            const token = jwt.sign({ id: user._id }, 'your_jwt_secret', { expiresIn: '1d' });
+            const token = jwt.sign(
+                { id: user._id },
+                process.env.JWT_SECRET,
+                { expiresIn: '1d' }
+            );
 
             res.json({ token, user_id: user._id });
         } catch (err) {
@@ -60,7 +71,11 @@ const userControllers = {
             const isMatch = await bcrypt.compare(password, user.password);
             if (!isMatch) return res.status(400).json({ message: "Invalid credentials" });
 
-            const token = jwt.sign({ id: user._id, isAdmin: true }, 'your_jwt_secret', { expiresIn: '1d' });
+            const token = jwt.sign(
+                { id: user._id, isAdmin: true },
+                process.env.JWT_SECRET,
+                { expiresIn: '1d' }
+            );
 
             res.json({ token, isAdmin: true });
         } catch (err) {
@@ -85,10 +100,14 @@ const userControllers = {
 
             await user.save();
 
+            const baseUrl =
+                process.env.FRONTEND_URL ||
+                "http://localhost:3173";
+
             res.json({
                 message: "Reset token generated",
                 resetToken,
-                resetUrl: `http://localhost:3173/reset-password/${resetToken}`
+                resetUrl: `${baseUrl}/reset-password/${resetToken}`
             });
 
         } catch (err) {
