@@ -14,7 +14,7 @@ const Navbar = ({ noBlur }) => {
           align-items: center;
           position: absolute;
           top: 0;
-          z-index: 10;
+          z-index: 10; 
         }
 
         .navbar:not(.no-blur) {
