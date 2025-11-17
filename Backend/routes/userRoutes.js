@@ -9,7 +9,7 @@ const { DataTypes } = require("sequelize");
 // Registration
 router.post('/register', userControllers.createUser);
 
-// Login
+// Login 
 router.post('/login', userControllers.loginUser);
 
 // Admin Login
