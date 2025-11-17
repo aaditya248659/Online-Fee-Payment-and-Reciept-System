@@ -1,13 +1,8 @@
-import { useContext } from "react";
-import { ApiContext } from "./App";
+import axios from "axios";
+import { API_BASE_URL } from "./apiConfig";
 
-export const useApi = () => {
-  const { api } = useContext(ApiContext);
+const api = axios.create({
+  baseURL: API_BASE_URL,
+});
 
-  // wrapper around fetch/axios
-  const request = (endpoint, options = {}) => {
-    return fetch(`${api}${endpoint}`, options);
-  };
-
-  return { request, api };
-};
+export default api;

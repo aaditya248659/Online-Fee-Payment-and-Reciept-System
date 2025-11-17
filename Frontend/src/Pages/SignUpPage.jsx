@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../PageCss/SignupPage.css';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from "../useApi";
 
 function SignupPage() {
   const [name, setName] = useState('');
