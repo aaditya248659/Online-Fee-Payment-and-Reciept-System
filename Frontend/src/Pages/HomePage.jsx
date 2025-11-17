@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import api from "../useApi";
 import '../PageCss/HomePage.css';
+import axios from "axios";
 
 function HomePage() {
   const [user, setUser] = useState(null);

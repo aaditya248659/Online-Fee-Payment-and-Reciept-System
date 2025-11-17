@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../PageCss/SignupPage.css';
 import { Link, useNavigate } from 'react-router-dom';
 import api from "../useApi";
+import axios from "axios";
 
 function SignupPage() {
   const [name, setName] = useState('');
