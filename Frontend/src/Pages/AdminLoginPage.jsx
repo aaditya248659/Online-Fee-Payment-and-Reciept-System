@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../PageCss/AdminLoginPage.css';
 import { useNavigate, Link } from 'react-router-dom';
-import axios from 'axios';
+import api from "../useApi";
 
 function AdminLoginPage() {
   const [formData, setFormData] = useState({ 
@@ -25,7 +25,7 @@ function AdminLoginPage() {
     setLoading(true);
     
     try {
-      const response = await axios.post('http://localhost:5000/api/users/admin-login', formData);
+      const response = await api.post('/users/admin-login', formData);
       if (response.data.token && response.data.isAdmin) {
         localStorage.setItem('admin_token', response.data.token);
         navigate('/admin-dashboard');

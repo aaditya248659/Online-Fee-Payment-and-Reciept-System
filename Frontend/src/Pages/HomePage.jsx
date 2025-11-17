@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import axios from 'axios';
+import api from "../useApi";
 import '../PageCss/HomePage.css';
 
 function HomePage() {
@@ -16,15 +16,13 @@ function HomePage() {
 
   const fetchUser = async () => {
     try {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        navigate('/login');
-        return;
-      }
+      // const token = localStorage.getItem('token');
+      // if (!token) {
+      //   navigate('/login');
+      //   return;
+      // }
       
-      const response = await axios.get('http://localhost:5000/api/users/me', {
-        headers: { 'x-auth-token': token }
-      });
+      const response = await api.get('/users/me');
       
       setUser(response.data);
       setEditData(response.data);
@@ -51,9 +49,7 @@ function HomePage() {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      await axios.put('http://localhost:5000/api/users/me', editData, {
-        headers: { 'x-auth-token': token }
-      });
+      await api.put('/users/me', editData);
       
       setUser(editData);
       setEditing(false);

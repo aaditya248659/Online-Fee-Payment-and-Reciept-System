@@ -53,7 +53,7 @@ function SignupPage() {
 
     try {
       const data = { name, email, password, mobile_no };
-      const response = await axios.post("http://localhost:5000/api/users/register", data);
+      const response = await api.post("/users/register", data);
       console.log("response", response);
       navigate("/login");
     } catch (err) {

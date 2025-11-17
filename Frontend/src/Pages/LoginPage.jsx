@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../PageCss/LoginPage.css';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from "../useApi";
 
 function LoginPages() {
     const [formData, setFormData] = useState({
@@ -33,7 +33,7 @@ function LoginPages() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5000/api/users/login', formData);
+            const response = await api.post('/users/login', formData);
             if (response.data.token) {
                 // Make sure both are stored
                 localStorage.setItem('token', response.data.token);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from "../useApi";
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import '../PageCss/PaymentPage.css';
@@ -30,9 +30,7 @@ function PaymentPage() {
         }
 
         // Fetch user data
-        axios.get('http://localhost:5000/api/users/me', {
-            headers: { 'x-auth-token': token }
-        })
+        api.get('/users/me')
         .then(res => {
             console.log('User data received:', res.data); // Debug log
             setUser(res.data);
@@ -109,10 +107,7 @@ function PaymentPage() {
 
                 // Update user's fee to 0 in backend
                 const token = localStorage.getItem('token');
-                await axios.put('http://localhost:5000/api/users/me', 
-                    { feeDue: 0 }, 
-                    { headers: { 'x-auth-token': token } }
-                );
+                api.put('/users/me', { feeDue: 0 });
 
                 setPaymentSuccess(true);
                 setLoading(false);

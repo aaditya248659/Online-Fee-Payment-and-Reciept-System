@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import api from "../useApi";
 import { useNavigate, Link } from 'react-router-dom';
 import '../PageCss/AdminDashboard.css';
 
@@ -37,9 +37,7 @@ function AdminDashboard() {
   const fetchUsers = async () => {
     try {
       const token = localStorage.getItem('admin_token');
-      const res = await axios.get('http://localhost:5000/api/users/all', {
-        headers: { 'x-auth-token': token }
-      });
+      const res = await api.get('/users/all');
       setUsers(res.data);
     } catch (err) {
       console.error('Error fetching users:', err);
@@ -67,9 +65,7 @@ function AdminDashboard() {
   const handleUpdate = async (id) => {
     try {
       const token = localStorage.getItem('admin_token');
-      const res = await axios.put(`http://localhost:5000/api/users/${id}`, editData, {
-        headers: { 'x-auth-token': token }
-      });
+      const res = await api.put(`/users/${id}`, editData);
       
       // Show success alert
       alert('Student updated successfully!');
