@@ -1,26 +1,29 @@
-// src/useApi.js
 import axios from "axios";
 
-const BASE = import.meta.env.VITE_API_URL 
-  || "https://online-fee-payment-and-reciept-system-tb57.onrender.com/api";
+const BASE =
+  import.meta.env.VITE_API_URL ||
+  "https://online-fee-payment-and-reciept-system-tb57.onrender.com/api";
+
+console.log("API BASE URL:", BASE);
 
 const api = axios.create({
-  baseURL: BASE,
-  withCredentials: false,
+  baseURL: BASE, // THIS MUST END WITH /api
   headers: {
     "Content-Type": "application/json",
   },
 });
 
-// attach token
-api.interceptors.request.use((config) => {
-  const token = localStorage.getItem("token");
-  const adminToken = localStorage.getItem("admin_token");
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("token");
+    const adminToken = localStorage.getItem("admin_token");
 
-  if (token) config.headers["x-auth-token"] = token;
-  if (adminToken) config.headers["x-auth-token"] = adminToken;
+    if (token) config.headers["x-auth-token"] = token;
+    if (adminToken) config.headers["x-auth-token"] = adminToken;
 
-  return config;
-});
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
 
 export default api;

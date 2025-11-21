@@ -74,18 +74,16 @@ const installFetchRewrite = (apiBase) => {
 const App = () => {
   const apiBase = useMemo(() => resolveApiBase(), []);
 
-  // 🔥 **THIS WAS MISSING!!**
+  // ✅ FIX: Create axiosInstance BEFORE rendering provider
   const axiosInstance = useMemo(() => {
     return axios.create({
-      baseURL: `${apiBase}/api`,
+      baseURL: `${apiBase}/api`, // MUST point to your backend routes
       timeout: 20000,
     });
   }, [apiBase]);
 
   useEffect(() => {
     installFetchRewrite(apiBase);
-
-    axios.defaults.baseURL = `${apiBase}/api`;
   }, [apiBase]);
 
   return (
