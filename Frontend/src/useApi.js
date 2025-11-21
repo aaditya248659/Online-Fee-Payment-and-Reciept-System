@@ -1,3 +1,4 @@
+// src/useApi.js
 import axios from "axios";
 
 const BASE =
@@ -7,7 +8,8 @@ const BASE =
 console.log("API BASE URL:", BASE);
 
 const api = axios.create({
-  baseURL: BASE, // THIS MUST END WITH /api
+  baseURL: BASE,        // <-- ensures /api prefix is ALWAYS included
+  withCredentials: false,
   headers: {
     "Content-Type": "application/json",
   },
