@@ -34,7 +34,7 @@ export const ApiContext = createContext({
 */
 const resolveApiBase = () => {
   // 1. env variable (set this in frontend env)
-  const envUrl = process.env.REACT_APP_API_URL;
+  const envUrl = import.meta.env.VITE_API_URL;
   if (envUrl && envUrl.trim() !== "") return envUrl.replace(/\/$/, ""); // strip trailing slash
 
   // 2. if localhost dev
