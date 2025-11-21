@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import '../PageCss/AdminLoginPage.css';
 import { useNavigate, Link } from 'react-router-dom';
 import api from "../useApi";
-import axios from "axios";
 
 function AdminLoginPage() {
   const [formData, setFormData] = useState({ 
