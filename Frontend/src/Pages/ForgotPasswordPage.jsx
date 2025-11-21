@@ -16,9 +16,7 @@ function ForgotPasswordPage() {
     setLoading(true);
     setError('');
     try {
-      const response = await api.post('/users/forgot-password', {
-        email: email
-      });
+      const response = await api.post("/users/forgot-password", { email })
       setSubmitted(true);
       setResetUrl(response.data.resetUrl);
     } catch (err) {

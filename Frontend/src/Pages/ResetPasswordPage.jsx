@@ -43,10 +43,7 @@ function ResetPasswordPage() {
     setLoading(true);
 
     try {
-      await api.post(`/users/reset-password/${token}`, {
-        newPassword: passwords.newPassword
-      });
-
+      await api.post(`/users/reset-password/${token}`, { newPassword })
       setSuccess('Password reset successful! Redirecting to login...');
       setTimeout(() => {
         navigate('/login');
