@@ -1,7 +1,8 @@
 // src/useApi.js
 import axios from "axios";
 
-const BASE = import.meta.env.VITE_API_URL || "https://online-fee-payment-and-reciept-system-tb57.onrender.com/api";
+const BASE = import.meta.env.VITE_API_URL 
+  || "https://online-fee-payment-and-reciept-system-tb57.onrender.com/api";
 
 const api = axios.create({
   baseURL: BASE,
@@ -11,18 +12,15 @@ const api = axios.create({
   },
 });
 
-// attach token header automatically (user or admin token)
+// attach token
 api.interceptors.request.use((config) => {
-  try {
-    const token = localStorage.getItem("token");
-    const adminToken = localStorage.getItem("admin_token");
+  const token = localStorage.getItem("token");
+  const adminToken = localStorage.getItem("admin_token");
 
-    if (token) config.headers["x-auth-token"] = token;
-    else if (adminToken) config.headers["x-auth-token"] = adminToken;
-  } catch (e) {
-    // do nothing
-  }
+  if (token) config.headers["x-auth-token"] = token;
+  if (adminToken) config.headers["x-auth-token"] = adminToken;
+
   return config;
-}, (error) => Promise.reject(error));
+});
 
 export default api;

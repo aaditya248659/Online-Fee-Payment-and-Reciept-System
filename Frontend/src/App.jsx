@@ -135,21 +135,6 @@ const installFetchRewrite = (apiBase) => {
 const App = () => {
   const apiBase = useMemo(() => resolveApiBase(), []);
   // Create axios instance with correct base url
-  const axiosInstance = useMemo(() => {
-    const inst = axios.create({
-      baseURL: apiBase, // axios requests like axios.get('/api/users') will go to apiBase + /api/users
-      // optional: set timeout, headers etc
-      timeout: 20000,
-    });
-    return inst;
-  }, [apiBase]);
-
-  // install fetch rewrite once
-  React.useEffect(() => {
-    installFetchRewrite(apiBase);
-    // also set global axios default just in case some code uses axios global import
-    axios.defaults.baseURL = apiBase;
-  }, [apiBase, axiosInstance]);
 
   return (
     <ApiContext.Provider value={{ apiBase, axiosInstance }}>
